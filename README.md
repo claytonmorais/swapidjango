@@ -23,7 +23,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4) Aplique o modelo de Dados com os comandos abaixo:
+4) Aplique o modelo de Dados do Admin com os comandos abaixo:
 
 ```
 python3 manage.py makemigrations
@@ -32,13 +32,23 @@ python3 manage.py makemigrations
 python3 manage.py migrate 
 ```
 
-5) Inicie a aplicação
+5) Também é necessário aplicar o modelo de dados da aplicação, que no nosso caso 
+   se chama api (Pasta api)
+   
+```
+python3 manage.py makemigrations api
+```
+```
+python3 manage.py migrate api
+```   
+
+6) Inicie a aplicação com o comando abaixo
 
 ```
-python3 manage.py runserver 5000
+python3 manage.py runserver 0.0.0.0:5000
 ```
 
-6) Rode o init para carregar o banco de dados. Neste momento irá 
+7) Rode o init para carregar o banco de dados. Neste momento irá 
 acessar a url https://swapi.dev/api para carregar as informações 
 e salvar no banco de dados 
 
