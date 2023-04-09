@@ -16,9 +16,13 @@ COPY . /app/
 
 RUN pip install -r requirements.txt
 
-RUN python3 manage.py makemigrations
-
 RUN python3 manage.py migrate
+
+RUN python3 manage.py makemigrations api
+
+RUN python3 manage.py migrate api
+
+COPY . /app/
 
 EXPOSE 5000
 
