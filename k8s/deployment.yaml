@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swapidjango-deployment
+  namespace: apiexemplo
+spec:
+  selector:
+    matchLabels:
+      app: swapidjango
+  template: 
+    metadata:
+        name: swapidjango
+        labels:
+          app: swapidjango
+    spec:
+        containers:
+          - name: swapidjango-container
+            image: $awsaccountid.dkr.ecr.$awseksregion.amazonaws.com/$awsecrrepository:swapidjango-$githash
+            env:
+              - name: NODE_PROFILES_ACTIVE
+                value: "dev"
+              - name: CONFIG_SERVER
+                value: "http://svc-swapiconfigserver.corporativo.svc.cluster.local/config/"
+            ports:
+              - containerPort: 5000
+              - containerPort: 9090
+            livenessProbe:
+              httpGet:
+                path: /swapi/health
+                port: 5000
+              initialDelaySeconds: 120
+              periodSeconds: 60
+              timeoutSeconds: 10
+              successThreshold: 1
+              failureThreshold: 2
+            readinessProbe:
+              httpGet:
+                path: /swapi/health
+                port: 5000
+              initialDelaySeconds: 120
+              periodSeconds: 10
+              timeoutSeconds: 10
