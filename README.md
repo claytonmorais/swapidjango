@@ -61,6 +61,6 @@ OBS: Este projeto necessita que o data--config-server e o secret do django estej
 ```
 
 SECRET_KEY = django-insecure-9^iuh9#ni^0n!6svqjsh=dk5x6&m9vxzl2gq=v2sm_ew%ls=c^
-CONFIG_SERVER_URL = http://localhost:8888/config
+CONFIG_SERVER_URL = http://<IP_DA_SUA_MAQUINA>:8888/config
 NODE_PROFILES_ACTIVE = dev
 ```
